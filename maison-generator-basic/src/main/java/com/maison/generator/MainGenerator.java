@@ -16,7 +16,7 @@ public class MainGenerator {
 //        StaticGenerator.copyFilesByRecursive(inputPath, outputPath);
 //
 //        // 2. 动态文件生成
-////        String projectPath = System.getProperty("user.dir") + File.separator + "maison-generator-basic";
+//        String projectPath = System.getProperty("user.dir") + File.separator + "maison-generator-basic";
 //        String dynamicInputPath = projectPath + File.separator + "maison-generator-basic" + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
 //        String dynamicOutputPath = projectPath + File.separator + "acm-template/src/com/yupi/acm/MainTemplate.java";
 //        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
