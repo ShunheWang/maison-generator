@@ -24,6 +24,13 @@ public class MainGenerator {
             FileUtil.mkdir(outputPath);
         }
 
+        // 复制原始文件
+        String sourceRootPath = meta.getFileConfig().getSourceRootPath();
+        String sourceCopyDestPath = outputPath + File.separator + ".source";
+        FileUtil.copy(sourceRootPath, sourceCopyDestPath, false);
+
+
+
         // 读取 resources 目录
         ClassPathResource classPathResource = new ClassPathResource("");
         String inputResourcePath = classPathResource.getAbsolutePath();
@@ -35,7 +42,6 @@ public class MainGenerator {
 
         String inputFilePath;
         String outputFilePath;
-
         // model.DataModel
         inputFilePath = inputResourcePath + File.separator + "templates/java/model/DataModel.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/model/DataModel.java";
@@ -83,6 +89,15 @@ public class MainGenerator {
         inputFilePath = inputResourcePath + File.separator + "templates/pom.xml.ftl";
         outputFilePath = outputPath + File.separator + "pom.xml";
         DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
+        // README.md
+        inputFilePath = inputResourcePath + File.separator + "templates/README.md.ftl";
+        outputFilePath = outputPath + File.separator + "README.md";
+        DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
+        // 构建 jar 包
+        JarGenerator.doGenerate(outputPath);
+
 
         // 构建 jar 包
         JarGenerator.doGenerate(outputPath);

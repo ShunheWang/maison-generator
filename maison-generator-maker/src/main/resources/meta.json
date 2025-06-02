@@ -6,7 +6,8 @@
   "author": "maison",
   "createTime": "2023-11-22",
   "fileConfig": {
-    "inputRootPath": "/Users/shunhewang/melbourne/idea-warehouse/maison-generator/maison-generator-demo-projects/acm-template-pro",
+    "inputRootPath": ".source/acm-template-pro",
+    "sourceRootPath": "/Users/shunhewang/melbourne/idea-warehouse/maison-generator/maison-generator-demo-projects/acm-template-pro",
     "outputRootPath": "generated",
     "type": "dir",
     "files": [
