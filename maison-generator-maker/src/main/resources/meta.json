@@ -32,8 +32,8 @@
         ]
       },
       {
-        "inputPath": "src/com/yupi/acm/MainTemplate.java.ftl",
-        "outputPath": "src/com/yupi/acm/MainTemplate.java",
+        "inputPath": "src/com/maison/acm/MainTemplate.java.ftl",
+        "outputPath": "src/com/maison/acm/MainTemplate.java",
         "type": "file",
         "generateType": "dynamic"
       }
@@ -60,12 +60,13 @@
         "groupName": "核心模板",
         "type": "MainTemplate",
         "description": "用于生成核心模板文件",
+        "condition": "loop",
         "models": [
           {
             "fieldName": "author",
             "type": "String",
             "description": "作者注释",
-            "defaultValue": "yupi",
+            "defaultValue": "maison",
             "abbr": "a"
           },
           {
