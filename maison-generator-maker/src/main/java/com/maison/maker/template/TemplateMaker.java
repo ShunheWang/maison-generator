@@ -5,6 +5,7 @@ package com.maison.maker.template;
  */
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.maison.maker.meta.Meta;
@@ -12,21 +13,35 @@ import com.maison.maker.meta.enums.FileGenerateTypeEnum;
 import com.maison.maker.meta.enums.FileTypeEnum;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TemplateMaker {
 
+
+
     public static void main(String[] args) {
+        // 指定原始项目路径
+        String projectPath = System.getProperty("user.dir");
+        String originProjectPath = new File(projectPath).getParent() + File.separator + "maison-generator-demo-projects/acm-template";
+
+        // 复制目录
+        long id = IdUtil.getSnowflakeNextId();
+        String tempDirPath = projectPath + File.separator + ".temp";
+        String templatePath = tempDirPath + File.separator + id;
+        if (!FileUtil.exist(templatePath)) {
+            FileUtil.mkdir(templatePath);
+        }
+        FileUtil.copy(originProjectPath, templatePath, true);
+
         // 一、输入信息
         // 1. 输入项目基本信息
         String name = "acm-template-generator";
         String description = "ACM 示例模板生成器";
 
         // 2. 输入文件信息
-        String projectPath = System.getProperty("user.dir");
-        String sourceRootPath = new File(projectPath).getParent() + File.separator + "maison-generator-demo-projects/acm-template";
-
+        String sourceRootPath = templatePath + File.separator + FileUtil.getLastPathEle(Paths.get(originProjectPath)).toString();
         String fileInputPath = "src/com/maison/acm/MainTemplate.java";
         String fileOutputPath = fileInputPath + ".ftl";
 
