@@ -1,7 +1,6 @@
 package com.maison.maker.generator.file;
 
 import cn.hutool.core.io.FileUtil;
-import com.maison.maker.model.DataModel;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -38,11 +37,11 @@ public class DynamicFileGenerator {
         String templateName = new File(inputPath).getName();
         Template template = configuration.getTemplate(templateName);
 
-        // 创建数据模型
-        DataModel dataModel = new DataModel();
-        dataModel.setAuthor("maison");
-        dataModel.setOutputText("求和结果：");
-        dataModel.setLoop(false);
+//        // 创建数据模型
+//        DataModel dataModel = new DataModel();
+//        dataModel.setAuthor("maison");
+//        dataModel.setOutputText("求和结果：");
+//        dataModel.setLoop(false);
 
         if (!FileUtil.exist(outputPath)) FileUtil.touch(outputPath);
 
