@@ -175,7 +175,7 @@ public class TemplateMaker {
     private static Meta.FileConfig.FileInfo makeFileTemplate(TemplateMakerModelConfig templateMakerModelConfig, String sourceRootPath, File inputFile) {
         // 要挖坑的文件绝对路径（用于制作模板）
         // 注意 win 系统需要对路径进行转义
-        String fileInputAbsolutePath = inputFile.getAbsolutePath().replaceAll("\\\\", "/");
+        String fileInputAbsolutePath = inputFile.getAbsolutePath();
         String fileOutputAbsolutePath = fileInputAbsolutePath + ".ftl";
 
         // 文件输入输出相对路径（用于生成配置）
