@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class TemplateMakerTest {
 
 
@@ -141,8 +139,14 @@ public class TemplateMakerTest {
         String configStr = ResourceUtil.readUtf8Str(rootPath + "templateMaker.json");
         TemplateMakerConfig templateMakerConfig = JSONUtil.toBean(configStr, TemplateMakerConfig.class);
         long id = TemplateMaker.makeTemplate(templateMakerConfig);
+
+        configStr = ResourceUtil.readUtf8Str(rootPath + "templateMaker1.json");
+        templateMakerConfig = JSONUtil.toBean(configStr, TemplateMakerConfig.class);
+        TemplateMaker.makeTemplate(templateMakerConfig);
         System.out.println(id);
     }
+
+
 
 
 
