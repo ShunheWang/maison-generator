@@ -98,7 +98,7 @@ public class TemplateMakerTest {
 
         // 文件参数配置
         // 输入文件
-        String inputFilePath = "src/main/java/com/maison/project/common";
+        String inputFilePath = "./";
         TemplateMakerFileConfig templateMakerFileConfig = new TemplateMakerFileConfig();
         TemplateMakerFileConfig.FileInfoConfig fileInfoConfig1 = new TemplateMakerFileConfig.FileInfoConfig();
         fileInfoConfig1.setPath(inputFilePath);
