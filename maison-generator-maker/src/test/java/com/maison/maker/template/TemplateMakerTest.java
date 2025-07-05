@@ -1,9 +1,12 @@
 package com.maison.maker.template;
 
+import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.json.JSONUtil;
 import com.maison.maker.meta.Meta;
 import com.maison.maker.template.enums.FileFilterRangeEnum;
 import com.maison.maker.template.enums.FileFilterRuleEnum;
 import com.maison.maker.template.model.FileFilterConfig;
+import com.maison.maker.template.model.TemplateMakerConfig;
 import com.maison.maker.template.model.TemplateMakerFileConfig;
 import com.maison.maker.template.model.TemplateMakerModelConfig;
 import org.junit.Test;
@@ -117,5 +120,17 @@ public class TemplateMakerTest {
         long id = TemplateMaker.makeTemplate(meta, originProjectPath, templateMakerFileConfig, templateMakerModelConfig, 1941435692707311616L);
         System.out.println(id);
     }
+
+    /**
+     * 使用 JSON 制作模板
+     */
+    @Test
+    public void testMakeTemplateWithJSON() {
+        String configStr = ResourceUtil.readUtf8Str("templateMaker.json");
+        TemplateMakerConfig templateMakerConfig = JSONUtil.toBean(configStr, TemplateMakerConfig.class);
+        long id = TemplateMaker.makeTemplate(templateMakerConfig);
+        System.out.println(id);
+    }
+
 
 }
