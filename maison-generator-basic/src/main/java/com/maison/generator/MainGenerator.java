@@ -18,7 +18,7 @@ public class MainGenerator {
 //        // 2. 动态文件生成
 //        String projectPath = System.getProperty("user.dir") + File.separator + "maison-generator-basic";
 //        String dynamicInputPath = projectPath + File.separator + "maison-generator-basic" + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
-//        String dynamicOutputPath = projectPath + File.separator + "acm-template/src/com/yupi/acm/MainTemplate.java";
+//        String dynamicOutputPath = projectPath + File.separator + "acm-template/src/com/maison/acm/MainTemplate.java";
 //        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
 //        mainTemplateConfig.setAuthor("maison");
 //        mainTemplateConfig.setOutputText("求和输出：");
@@ -53,8 +53,8 @@ public class MainGenerator {
         String inputPath;
         String outputPath;
 
-        inputPath = new File(inputRootPath, "src/com/yupi/acm/MainTemplate.java.ftl").getAbsolutePath();
-        outputPath = new File(outputRootPath, "src/com/yupi/acm/MainTemplate.java").getAbsolutePath();
+        inputPath = new File(inputRootPath, "src/com/maison/acm/MainTemplate.java.ftl").getAbsolutePath();
+        outputPath = new File(outputRootPath, "src/com/maison/acm/MainTemplate.java").getAbsolutePath();
         DynamicGenerator.doGenerate(inputPath, outputPath, model);
 
         inputPath = new File(inputRootPath, ".gitignore").getAbsolutePath();
