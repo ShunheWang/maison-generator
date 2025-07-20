@@ -10,9 +10,10 @@ import java.util.Date;
 
 /**
  * 代码生成器
+ *
  * @TableName generator
  */
-@TableName(value ="generator")
+@TableName(value = "generator")
 @Data
 public class Generator {
     /**
@@ -34,7 +35,7 @@ public class Generator {
     /**
      * 基础包
      */
-    private String basepackage;
+    private String basePackage;
 
     /**
      * 版本
@@ -59,17 +60,17 @@ public class Generator {
     /**
      * 文件配置（json字符串）
      */
-    private String fileconfig;
+    private String fileConfig;
 
     /**
      * 模型配置（json字符串）
      */
-    private String modelconfig;
+    private String modelConfig;
 
     /**
      * 代码生成器产物路径
      */
-    private String distpath;
+    private String distPath;
 
     /**
      * 状态
@@ -79,21 +80,21 @@ public class Generator {
     /**
      * 创建用户 id
      */
-    private Long userid;
+    private Long userId;
 
     /**
      * 创建时间
      */
-    private Date createtime;
+    private Date createTime;
 
     /**
      * 更新时间
      */
-    private Date updatetime;
+    private Date updateTime;
 
     /**
      * 是否删除
      */
     @TableLogic
-    private Integer isdelete;
+    private Integer isDelete;
 }

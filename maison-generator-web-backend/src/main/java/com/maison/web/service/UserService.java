@@ -6,9 +6,9 @@ import com.maison.web.model.dto.user.UserQueryRequest;
 import com.maison.web.model.entity.User;
 import com.maison.web.model.vo.LoginUserVO;
 import com.maison.web.model.vo.UserVO;
-import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
+import java.util.List;
 
 /**
  * 用户服务
