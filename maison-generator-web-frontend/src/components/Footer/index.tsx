@@ -14,25 +14,13 @@ const Footer: React.FC = () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'codeNav',
-          title: '编程导航',
-          href: 'https://maison.icu',
-          blankTarget: true,
-        },
-        {
-          key: 'Ant Design',
-          title: '编程宝典',
-          href: 'https://codefather.cn',
-          blankTarget: true,
-        },
-        {
           key: 'github',
           title: (
             <>
-              <GithubOutlined /> 鱼皮源码
+              <GithubOutlined /> Maison源码
             </>
           ),
-          href: 'https://github.com/limaison',
+          href: 'https://github.com/maisonwang',
           blankTarget: true,
         },
       ]}

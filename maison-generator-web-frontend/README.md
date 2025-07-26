@@ -1,11 +1,11 @@
-# 鱼皮前端万用模板
+# Maison代码生成模板
 
 > 作者：[maison](https://github.com/limaison)
 > 仅分享于 [maison个人练习项目](https://maison.icu)
 
 基于 React + Ant Design 的项目初始模板，整合了常用框架和主流业务的示例代码。
 
-只需 1 分钟 即可完成网站的基础前端！！！大家还可以在此基础上快速开发自己的项目。
+
 
 [TOC]
 
