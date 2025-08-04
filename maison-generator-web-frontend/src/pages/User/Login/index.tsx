@@ -3,9 +3,11 @@ import { userLoginUsingPost } from '@/services/backend/userController';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
+// @ts-ignore
 import { Helmet, history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import React, { useState } from 'react';
+// @ts-ignore
 import { Link } from 'umi';
 import Settings from '../../../../config/defaultSettings';
 

@@ -3,6 +3,7 @@
 .temp
 .idea
 maison-generator.iml
+maison-generator-web-backend/src/main/resources/application-local.yml
 target
 generated
 
