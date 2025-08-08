@@ -1,7 +1,7 @@
 package com.maison.web.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.maison.web.meta.Meta;
+import com.maison.maker.meta.Meta;
 import com.maison.web.model.entity.Generator;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

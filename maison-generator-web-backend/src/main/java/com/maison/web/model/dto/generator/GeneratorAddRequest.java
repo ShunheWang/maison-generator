@@ -1,6 +1,6 @@
 package com.maison.web.model.dto.generator;
 
-import com.maison.web.meta.Meta;
+import com.maison.maker.meta.Meta;
 import lombok.Data;
 
 import java.io.Serializable;

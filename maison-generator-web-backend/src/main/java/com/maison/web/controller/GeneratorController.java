@@ -14,7 +14,7 @@ import com.maison.web.constant.UserConstant;
 import com.maison.web.exception.BusinessException;
 import com.maison.web.exception.ThrowUtils;
 import com.maison.web.manager.CosManager;
-import com.maison.web.meta.Meta;
+import com.maison.maker.meta.Meta;
 import com.maison.web.model.dto.generator.*;
 import com.maison.web.model.entity.Generator;
 import com.maison.web.model.entity.User;
