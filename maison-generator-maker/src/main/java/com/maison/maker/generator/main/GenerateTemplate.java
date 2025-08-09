@@ -182,7 +182,7 @@ public abstract class GenerateTemplate {
         DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
         // pom.xml
-        inputFilePath = inputResourcePath + File.separator + "templates/pom.xml.ftl";
+        inputFilePath = inputResourcePath + File.separator + "templates/POM.xml.ftl";
         outputFilePath = outputPath + File.separator + "pom.xml";
         DynamicFileGenerator.doGenerate(inputFilePath , outputFilePath, meta);
     }
