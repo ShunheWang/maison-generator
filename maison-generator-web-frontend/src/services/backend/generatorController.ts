@@ -97,7 +97,7 @@ export async function listGeneratorVoByPageUsingPost(
   body: API.GeneratorQueryRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponsePageGeneratorVO_>('/generator/list/page/vo', {
+  return request<API.BaseResponsePageGeneratorVO_>('/generator/list/page/vo/fast', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

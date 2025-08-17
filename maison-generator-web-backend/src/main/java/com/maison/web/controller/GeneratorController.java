@@ -1,11 +1,14 @@
 package com.maison.web.controller;
 
+import cn.hutool.core.codec.Base64Encoder;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.maison.maker.generator.main.GenerateTemplate;
 import com.maison.maker.generator.main.ZipGenerator;
@@ -18,6 +21,7 @@ import com.maison.web.common.ResultUtils;
 import com.maison.web.constant.UserConstant;
 import com.maison.web.exception.BusinessException;
 import com.maison.web.exception.ThrowUtils;
+import com.maison.web.manager.CacheManager;
 import com.maison.web.manager.CosManager;
 import com.maison.maker.meta.Meta;
 import com.maison.web.model.dto.generator.*;
@@ -31,6 +35,8 @@ import com.qcloud.cos.model.COSObjectInputStream;
 import com.qcloud.cos.utils.IOUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +53,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 帖子接口
@@ -68,7 +75,8 @@ public class GeneratorController {
     @Resource
     private UserService userService;
 
-    // region 增删改查
+    @Resource
+    private CacheManager cacheManager;
 
     /**
      * 创建
@@ -194,6 +202,58 @@ public class GeneratorController {
                 generatorService.getQueryWrapper(generatorQueryRequest));
         return ResultUtils.success(generatorPage);
     }
+
+    /**
+     * 快速分页获取列表（封装类）
+     *
+     * @param generatorQueryRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/list/page/vo/fast")
+    public BaseResponse<Page<GeneratorVO>> listGeneratorVOByPageFast(@RequestBody GeneratorQueryRequest generatorQueryRequest,
+                                                                     HttpServletRequest request) {
+        long current = generatorQueryRequest.getCurrent();
+        long size = generatorQueryRequest.getPageSize();
+        String cacheKey = getPageCacheKey(generatorQueryRequest);
+
+        // 多级缓存
+        String cacheValue = cacheManager.get(cacheKey);
+        if (cacheValue != null) {
+            Page<GeneratorVO> generatorVOPage = JSONUtil.toBean(cacheValue,
+                    new TypeReference<Page<GeneratorVO>>() {
+                    },
+                    false);
+            return ResultUtils.success(generatorVOPage);
+        }
+
+        // 限制爬虫
+        ThrowUtils.throwIf(size > 20, ErrorCode.PARAMS_ERROR);
+        QueryWrapper<Generator> queryWrapper = generatorService.getQueryWrapper(generatorQueryRequest);
+        queryWrapper.select("id", "name", "description", "tags", "picture", "status", "userId", "createTime", "updateTime");
+        Page<Generator> generatorPage = generatorService.page(new Page<>(current, size), queryWrapper);
+        Page<GeneratorVO> generatorVOPage = generatorService.getGeneratorVOPage(generatorPage, request);
+
+        // 写入多级缓存
+        cacheManager.put(cacheKey, JSONUtil.toJsonStr(generatorVOPage));
+        return ResultUtils.success(generatorVOPage);
+    }
+
+
+
+    /**
+     * 获取分页缓存 key
+     * @param generatorQueryRequest
+     * @return
+     */
+    private static String getPageCacheKey(GeneratorQueryRequest generatorQueryRequest) {
+        String jsonStr = JSONUtil.toJsonStr(generatorQueryRequest);
+        String base64 = Base64Encoder.encode(jsonStr);
+        String key = "generator:page:" + base64;
+        return key;
+    }
+
+
 
     /**
      * 分页获取列表（封装类）
