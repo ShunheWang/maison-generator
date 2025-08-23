@@ -42,8 +42,9 @@ spring:
 server:
   tomcat:
     threads:
-      max: 500
-    accept-count: 500
+      max: 100000
+    accept-count: 1000
+    max-connections: 100000
   address: 0.0.0.0
   port: 8120
   servlet:
